@@ -4,14 +4,12 @@ import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
   Chip, IconButton, Button, InputAdornment, Tooltip, TableSortLabel,
   Menu, ListItemIcon, ListItemText, Divider, TablePagination, Stack,
-  Alert
+  Alert, Snackbar
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import DownloadIcon from '@mui/icons-material/Download';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { CATEGORIES, CATEGORY_COLORS } from '../data/mockData';
@@ -37,6 +35,7 @@ export default function TransactionsSection() {
   const [exportMenu, setExportMenu] = useState(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 
   const setFilter = (key, value) => {
     dispatch({ type: 'SET_FILTER', key, value });
@@ -57,8 +56,16 @@ export default function TransactionsSection() {
   const handleDelete = (id) => dispatch({ type: 'DELETE_TRANSACTION', payload: id });
 
   const handleSave = (tx) => {
-    if (editTx) dispatch({ type: 'EDIT_TRANSACTION', payload: tx });
-    else dispatch({ type: 'ADD_TRANSACTION', payload: tx });
+    if (editTx) {
+      dispatch({ type: 'EDIT_TRANSACTION', payload: tx });
+      setSnackbar({ open: true, message: 'Transaction updated successfully!', severity: 'success' });
+    } else {
+      dispatch({ type: 'ADD_TRANSACTION', payload: tx });
+      // Reset view to show the new transaction at the top
+      setPage(0);
+      if (filters.search) setFilter('search', '');
+      setSnackbar({ open: true, message: 'New transaction added successfully!', severity: 'success' });
+    }
   };
 
   const resetFilters = () => {
@@ -70,7 +77,7 @@ export default function TransactionsSection() {
     <Box>
       <Card sx={{ borderRadius: 3, boxShadow: '0 2px 16px rgba(0,0,0,0.08)' }}>
         <CardContent sx={{ p: 3 }}>
-          {/* Header */}
+
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3, flexWrap: 'wrap', gap: 2 }}>
             <Box>
               <Typography variant="h6" fontWeight={700}>Transactions</Typography>
@@ -90,7 +97,7 @@ export default function TransactionsSection() {
             </Stack>
           </Box>
 
-          {/* Filters */}
+
           <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 2 }}>
             <TextField
               placeholder="Search transactions..."
@@ -119,7 +126,7 @@ export default function TransactionsSection() {
             </Tooltip>
           </Box>
 
-          {/* Table */}
+
           {paginated.length === 0 ? (
             <Alert severity="info" sx={{ borderRadius: 2 }}>No transactions match your filters. Try adjusting the search or filter criteria.</Alert>
           ) : (
@@ -204,7 +211,7 @@ export default function TransactionsSection() {
         </CardContent>
       </Card>
 
-      {/* Export Menu */}
+
       <Menu anchorEl={exportMenu} open={Boolean(exportMenu)} onClose={() => setExportMenu(null)} PaperProps={{ sx: { borderRadius: 2 } }}>
         <ListItemText sx={{ px: 2, py: 0.5 }}>
           <Typography variant="caption" color="text.secondary" fontWeight={600}>EXPORT</Typography>
@@ -225,6 +232,21 @@ export default function TransactionsSection() {
         onClose={() => setDialogOpen(false)}
         onSave={handleSave}
         transaction={editTx}
+      />
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={4000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        message={snackbar.message}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        sx={{
+          '& .MuiSnackbarContent-root': {
+            borderRadius: 3,
+            bgcolor: snackbar.severity === 'success' ? '#1a1a2e' : 'error.main',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+          }
+        }}
       />
     </Box>
   );
