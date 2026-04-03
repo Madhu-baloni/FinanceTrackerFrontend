@@ -1,9 +1,18 @@
-# Finance Dashboard
+Finance DashBoard
 
-A full-featured finance dashboard built with **React + MUI (Material UI)**.
+ Built with **React + MUI (Material UI)**.
 
+## Features
 
-## Tech Stack
+- **Dashboard Overview** — Summary cards, balance trend chart, spending pie/bar charts
+- **Transactions Section** — Searchable, filterable, sortable table with pagination
+- **Role-Based UI** — Admin (add/edit/delete) and Viewer (read-only) roles via dropdown
+- **Insights Section** — Highest spending category, monthly comparison, financial health score
+- **Dark Mode** — Full dark/light theme toggle
+- **Data Persistence** — Auto-saves to localStorage
+- **Export** — Download transactions as CSV or JSON
+
+## Tech Stack are used : 
 
 - React 18
 - MUI v5 (Material UI)
@@ -22,4 +31,9 @@ npm start
 ```
 
 App opens at http://localhost:3000
+
+
+Switch roles using the dropdown in the top-right navbar:
+Role : - Admin
+Role : - Viewer
 

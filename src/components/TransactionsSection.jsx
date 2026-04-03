@@ -10,6 +10,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import DownloadIcon from '@mui/icons-material/Download';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { CATEGORIES, CATEGORY_COLORS } from '../data/mockData';
@@ -61,7 +63,6 @@ export default function TransactionsSection() {
       setSnackbar({ open: true, message: 'Transaction updated successfully!', severity: 'success' });
     } else {
       dispatch({ type: 'ADD_TRANSACTION', payload: tx });
-      // Reset view to show the new transaction at the top
       setPage(0);
       if (filters.search) setFilter('search', '');
       setSnackbar({ open: true, message: 'New transaction added successfully!', severity: 'success' });

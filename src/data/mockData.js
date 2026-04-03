@@ -38,7 +38,7 @@ let idCounter = 1;
 const makeId = () => String(idCounter++).padStart(4, '0');
 
 export const generateTransactions = () => [
-  // === MONTH: current month ===
+
   { id: makeId(), date: format(subDays(today, 1), 'yyyy-MM-dd'), description: 'Monthly Salary', amount: 85000, type: 'income', category: 'Salary' },
   { id: makeId(), date: format(subDays(today, 2), 'yyyy-MM-dd'), description: 'Grocery Store - BigBasket', amount: 3200, type: 'expense', category: 'Food & Dining' },
   { id: makeId(), date: format(subDays(today, 3), 'yyyy-MM-dd'), description: 'Uber Ride', amount: 450, type: 'expense', category: 'Transportation' },
@@ -54,7 +54,7 @@ export const generateTransactions = () => [
   { id: makeId(), date: format(subDays(today, 13), 'yyyy-MM-dd'), description: 'Mobile Recharge', amount: 399, type: 'expense', category: 'Utilities' },
   { id: makeId(), date: format(subDays(today, 14), 'yyyy-MM-dd'), description: 'Coffee Shop', amount: 350, type: 'expense', category: 'Food & Dining' },
   { id: makeId(), date: format(subDays(today, 15), 'yyyy-MM-dd'), description: 'Clothing - H&M', amount: 3500, type: 'expense', category: 'Shopping' },
-  // === 30-45 days ago ===
+
   { id: makeId(), date: format(subDays(today, 32), 'yyyy-MM-dd'), description: 'Monthly Salary', amount: 85000, type: 'income', category: 'Salary' },
   { id: makeId(), date: format(subDays(today, 33), 'yyyy-MM-dd'), description: 'Grocery Store', amount: 2900, type: 'expense', category: 'Food & Dining' },
   { id: makeId(), date: format(subDays(today, 34), 'yyyy-MM-dd'), description: 'Metro Card Recharge', amount: 500, type: 'expense', category: 'Transportation' },
@@ -66,7 +66,7 @@ export const generateTransactions = () => [
   { id: makeId(), date: format(subDays(today, 40), 'yyyy-MM-dd'), description: 'Petrol', amount: 2000, type: 'expense', category: 'Transportation' },
   { id: makeId(), date: format(subDays(today, 41), 'yyyy-MM-dd'), description: 'Pharmacy', amount: 650, type: 'expense', category: 'Healthcare' },
   { id: makeId(), date: format(subDays(today, 42), 'yyyy-MM-dd'), description: 'Restaurant Dinner', amount: 2100, type: 'expense', category: 'Food & Dining' },
-  // === 60-75 days ago ===
+
   { id: makeId(), date: format(subDays(today, 62), 'yyyy-MM-dd'), description: 'Monthly Salary', amount: 85000, type: 'income', category: 'Salary' },
   { id: makeId(), date: format(subDays(today, 63), 'yyyy-MM-dd'), description: 'Grocery Shopping', amount: 3400, type: 'expense', category: 'Food & Dining' },
   { id: makeId(), date: format(subDays(today, 64), 'yyyy-MM-dd'), description: 'Goa Trip Flight', amount: 7500, type: 'expense', category: 'Travel' },

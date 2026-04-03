@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
 import { Box, Card, CardContent, CardHeader, Typography, LinearProgress, Avatar, Alert, Chip, Dialog, DialogContent, IconButton, Zoom } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import InsightsIcon from '@mui/icons-material/Insights';
-import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { CATEGORY_COLORS } from '../data/mockData';
 import { formatCurrency } from '../utils/helpers';
+import { useState } from 'react';
 
 function InsightCard({ title, icon, color, children, onClick, isExpanded }) {
   return (

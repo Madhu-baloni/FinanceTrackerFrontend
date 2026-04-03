@@ -118,6 +118,30 @@ export const getInsights = (transactions) => {
   return { highestCategory, monthComparison, avgExpense, largestExpense, byCategory };
 };
 
+export const getDailyTrend = (transactions, days = 30) => {
+  const result = [];
+  const now = new Date();
+
+  for (let i = days - 1; i >= 0; i--) {
+    const d = subDays(now, i);
+    const dateStr = format(d, 'yyyy-MM-dd');
+    const label = format(d, 'dd MMM');
+    
+    const dayTxs = transactions.filter(t => t.date === dateStr);
+    const income = dayTxs.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
+    const expenses = dayTxs.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
+    
+    result.push({
+      date: label,
+      income,
+      expenses,
+      net: income - expenses
+    });
+  }
+  
+  return result;
+};
+
 export const exportToCSV = (transactions) => {
   const headers = ['Date', 'Description', 'Category', 'Type', 'Amount'];
   const rows = transactions.map((t) => [
