@@ -34,8 +34,11 @@ App opens at http://localhost:3000
 
 
 ## Switch roles using the dropdown in the top-right navbar:
+```bash
 Role : - Admin
+
 Role : - Viewer
+```
 
 ## Future Improvements
 
